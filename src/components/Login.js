@@ -6,6 +6,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
 
@@ -38,7 +39,7 @@ const Login = () => {
                 const user = userCredential.user;
                 updateProfile(user, {
                     displayName: name.current.value, 
-                    photoURL: "https://media.licdn.com/dms/image/v2/D5635AQELGXr wkKaNVg/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1715618497298?e=1725447600&v=beta&t=naFu57UmKsyRAAiehkpjon1sH6dZYu5ckFmGd61XKSs"
+                    photoURL: USER_AVATAR,
                   }).then(() => {
                         const {uid, email, displayName, photoURL} = auth.currentUser;
                         dispatch(addUser({uid: uid, email: email, displayName: displayName, photoURL: photoURL}));
@@ -60,7 +61,7 @@ const Login = () => {
                 .then((userCredential) => {
                 // Signed in 
                  const user = userCredential.user;
-                 console.log(user);
+                //  console.log(user);
                  navigate("/browse");
                  
                 // ...
